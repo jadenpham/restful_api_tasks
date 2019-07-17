@@ -31,7 +31,7 @@ module.exports = {
         });
     },
     update: function(req, res){
-        console.log(req.body, "This is from the backside")
+        // console.log(req.body, "This is from the backside")
         Tasks.findByIdAndUpdate({_id: req.params.id}, req.body, function(err, task){
            if(err){
                res.json(err);

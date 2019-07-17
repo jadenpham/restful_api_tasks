@@ -10,7 +10,9 @@
     <div class="description">
       <h1>Description</h1>
       <ul>
-        <li *ngIf="one_task">{{one_task.description}}</li>
+        <!-- <li *ngIf="one_task">{{one_task.description}}</li>
+         -->
+        <app-task *ngIf="one_task" [getTask]="one_task"></app-task>
       </ul>
     </div>
     <div class="form">

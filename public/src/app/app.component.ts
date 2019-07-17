@@ -55,8 +55,8 @@ export class AppComponent implements OnInit {
   }
   editTask(id){
     this._httpService.editTask(id, this.updatedTask).subscribe(data =>{ //using second param to pass the object with data over with the id
-      console.log(id);
-      console.log(data, "This is the data being updated")
+      console.log(data, "This is the data being updated");
+      this.getTasksFromService();
     })
   }
   removeTask(id){
