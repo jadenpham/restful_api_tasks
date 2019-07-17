@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-    Tasks = mongoose.model('Tasks');
+    var Tasks = mongoose.model('Tasks');
 
 module.exports = {
     show: function(req,res){
@@ -22,16 +22,17 @@ module.exports = {
         });
     },
     create: function(req,res){
-        Tasks.create({title: req.params.task, description: req.params.description}, function(err, task){
+        Tasks.create({title: req.params.title, description: req.params.description}, function(err, task){ //params to pull data from url, req.body pulls from form
             if(err){
                 res.json(err);
             } else{
-                res.redirect('/');
+                res.json(task);
             }
         });
     },
     update: function(req, res){
-        Tasks.updateOne({_id: req.params.id}, {$set: {title: req.params.task, description: req.params.description}}, function(err, task){
+        console.log(req.body, "This is from the backside")
+        Tasks.findByIdAndUpdate({_id: req.params.id}, req.body, function(err, task){
            if(err){
                res.json(err);
            }else{
@@ -39,11 +40,12 @@ module.exports = {
            }
         })},
     remove: function(req,res){
-        Tasks.deleteOne({id: req.params.task}, function(err, task){
+        Tasks.deleteOne({_id: req.params.id}, function(err, task){ //params is what is passed thru url
             if(err){
+                console.log("shit hits the fan")
                 res.json(err);
             } else{
-                res.redirect('/')
+                res.json(task)
             }
         })
     }

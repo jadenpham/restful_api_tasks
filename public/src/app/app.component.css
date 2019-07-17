@@ -1,0 +1,12 @@
+.root{
+    border: 10px solid blue;
+}
+.show{
+    display: block;
+}
+.description{
+    display: block;
+}
+.form{
+    display: block;
+}

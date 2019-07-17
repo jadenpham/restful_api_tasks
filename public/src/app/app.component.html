@@ -1,0 +1,34 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class = "root" style="text-align:center">
+  <button (click) = "getTasksFromService()">Show All Tasks!</button>
+    <div class="show" *ngFor = "let task of tasks">
+        <h3>{{task.title}}</h3> 
+        <button (click)="getTask(task._id)">Details</button>
+        <button (click)="removeTask(task._id)">Delete</button>
+        <button (click)="getUpdatedTask(task._id)">Update</button>
+    </div>
+    <div class="description">
+      <h1>Description</h1>
+      <ul>
+        <li *ngIf="one_task">{{one_task.description}}</li>
+      </ul>
+    </div>
+    <div class="form">
+      <form (submit)="addTask()"> <!--clicking sends to method in component.ts-->
+        <p>{{newTask | json }}</p>
+        Title: <input type="text" name="newTask.title" [(ngModel)] = "newTask.title"/>
+        Description: <input type="text" name="newTask.description" [(ngModel)] = "newTask.description"/>
+        <input type="submit" value="Create Task">
+      </form>
+    </div>
+    <div class="update" *ngIf="updatedTask">
+      <form (submit) = "editTask(updatedTask._id)">
+        <!-- {{ updateTask | json}} -->
+        New Title: <input type="text" name="updatedTask.title" [(ngModel)] = "updatedTask.title">
+        New Description:<input type="text" name="updatedTask.description" [(ngModel)] ="updatedTask.description">
+        <!-- <input type="hidden" value="{{one_task._id}}"> -->
+        <input type="submit" value="Update Task">
+      </form>
+    </div>
+</div>
+

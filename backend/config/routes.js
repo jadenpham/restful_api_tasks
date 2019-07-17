@@ -4,20 +4,17 @@ var mongoose = require('mongoose');
 var tasks = require('../controllers/tasks.js'); //connecting this to controller, when request hits controller, it knows to bounce to these routes
 
 module.exports = function(app){ //exporting these to controllers
-    app.get('/', function(req, res){
+    app.get('/tasks', function(req, res){
         tasks.show(req, res);
     })
-    app.get('/:id', function(req,res){
+    app.get('/tasks/:id', function(req,res){
         tasks.show_one(req,res);
 
     })
-    app.get('/new/:task/:description', function(req, res){
+    app.post('/new/:title/:description', function(req, res){
         tasks.create(req,res);
     })
-    app.get('/update/:id/:task/:description', function(req, res){
-        tasks.update(req,res);
-    })
-    app.get('/remove/:id', function(req,res){
-        tasks.remove(req,res);
-    })
+    app.put('/update/:id', tasks.update)
+    // })
+    app.delete('/remove/:id', tasks.remove)
 }
